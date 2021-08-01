@@ -1,0 +1,29 @@
+{
+  "name": "frostCastClient",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/dotenv": "^1.4.1",
+    "@vue/composition-api": "^1.0.4",
+    "axios": "^0.21.1",
+    "core-js": "^3.15.1",
+    "nuxt": "^2.15.7",
+    "vue-material": "^1.0.0-beta-15"
+  },
+  "devDependencies": {
+    "@nuxtjs/style-resources": "^1.2.0",
+    "@nuxtjs/tailwindcss": "^4.2.0",
+    "fibers": "^5.0.0",
+    "node-sass": "^6.0.1",
+    "postcss": "^8.3.5",
+    "sass": "^1.37.0",
+    "sass-loader": "^10.2.0",
+    "style-loader": "^3.2.1"
+  }
+}

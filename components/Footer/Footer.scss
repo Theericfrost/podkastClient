@@ -1,0 +1,47 @@
+@import "../../assets/scss/colors";
+@import "../../assets/scss/mixins";
+@import "./mobile/index.scss";
+
+.footer {
+  padding-top: 60px ;
+  padding-bottom: 60px ;
+  background: $black2;
+  .logo__block {
+    display: flex;
+    align-items: center;
+    .social__media {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      .link {
+        text-decoration: none;
+        &:not(:first-of-type) {
+          margin-left: 8px;
+        }
+        img {
+          width: 48px;
+          height: 48px;
+        }
+      }
+    }
+  }
+  .righs {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    @include font(normal, 400, 16px, 24px, $white);
+    .email {
+      margin-left: auto;
+      @include font(normal, 400, 16px, 24px, $white);
+      a {
+        text-decoration: none;
+        @include font(normal, 400, 16px, 24px, $white);
+      }
+    }
+  }
+}
+@include laptop();
+@include tablet();
+@include mobile768();
+@include mobile640();
+@include mobile480();

@@ -1,0 +1,70 @@
+@import "../../assets/scss/colors";
+@import "../../assets/scss/mixins";
+@import "./mobile/index.scss";
+
+.header {
+  padding: 12px;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  transition: background-color 300ms linear;
+  &.header_motion {
+    background: rgba($black2, 0.7);
+  }
+  .logo {
+    img {
+      height: 48px;
+    }
+  }
+  .menues {
+    margin-left: 32px;
+    button {
+      .md-ripple {
+        padding: 0;
+      }
+    }
+    div {
+      @include font(normal, 500, 16px, 22px, $white);
+      text-transform: uppercase;
+      &:not(:first-of-type) {
+        margin-left: 24px;
+      }
+    }
+  }
+  .social-media {
+    i {
+      font-size: 18px;
+      color: $white;
+      cursor: pointer;
+      &:not(:first-of-type) {
+        margin-left: 12px;
+      }
+    }
+  }
+  .search__block {
+    .md-field {
+      min-height: 32px;
+      padding-top: 0;
+      margin-bottom: 0;
+      &:after {
+        background: $white;
+      }
+      input {
+        -webkit-text-fill-color: $white !important;
+        text-fill-color: $white !important;
+        color: $white;
+        &::placeholder {
+          color: $white;
+        }
+      }
+    }
+    max-width: 167px;
+  }
+}
+
+@include laptop();
+@include tablet();
+@include mobile768();
+@include mobile640();
+@include mobile480();

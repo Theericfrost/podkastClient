@@ -1,0 +1,16 @@
+@mixin font($style, $weight, $size, $height, $color) {
+    font-family: "Source Code Pro";
+    font-style: $style;
+    font-weight: $weight;
+    font-size: $size;
+    line-height: $height;
+    color: $color;
+}
+
+@mixin font-without-color($style, $weight, $size, $height) {
+    font-family: "Source Code Pro";
+    font-style: $style;
+    font-weight: $weight;
+    font-size: $size;
+    line-height: $height;
+}
