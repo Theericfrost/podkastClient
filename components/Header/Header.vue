@@ -10,7 +10,7 @@
         <md-button md-menu-trigger>О подкасте</md-button>
         <md-menu-content>
           <md-menu-item>Реклама в подкасте</md-menu-item>
-          <md-menu-item>FAQ</md-menu-item>
+           <NuxtLink to="/faq"><md-menu-item>FAQ</md-menu-item></NuxtLink>
           <md-menu-item>Об авторах</md-menu-item>
         </md-menu-content>
       </md-menu>
