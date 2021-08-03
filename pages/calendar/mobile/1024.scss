@@ -1,0 +1,8 @@
+@import "../../../assets/scss/colors.scss";
+@import "../../../assets/scss/mixins.scss";
+
+@mixin tablet() {
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+      
+  }
+}

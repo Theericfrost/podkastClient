@@ -1,13 +1,13 @@
 <template>
-  <div class="main ">
+  <div class="main">
     <div class="main__header">
-      <div class="container mx-auto px-4">
+      <v-container>
         <h1>Привет</h1>
         <h2>Это подкаст <span>Frost Cast</span></h2>
         <!-- <Typer text="Я буду рассказывать вам самые интересные события в мире и в
         it" eternal={true} speed={150} colorObj={[ { "самые интересные события":
         "crimson" }, { it: "#28BCE5" }, ]} class="main__typer" lines={2} /> -->
-        </div>
+      </v-container>
     </div>
     <my-thank-you />
     <my-subscribe />
@@ -20,7 +20,7 @@ import ThankYou from "~components/ThankYou/ThankYou";
 export default {
   components: {
     "my-subscribe": SubscibeBlock,
-    "my-thank-you": ThankYou
+    "my-thank-you": ThankYou,
   },
 };
 </script>

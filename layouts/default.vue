@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <v-app>
     <my-header />
     <Nuxt />
     <my-snack-bar />
     <my-footer />
-  </div>
+  </v-app>
 </template>
 
 <script>

@@ -1,7 +1,6 @@
 export const state = () => ({
   snack: {
       text: '',
-      show: false
   }
 });
 

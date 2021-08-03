@@ -1,5 +1,5 @@
 <template>
-    <div class="unsubscribe container mx-auto px-4">
+    <div class="unsubscribe">
         <NuxtLink to="/">Вернуться на главную</NuxtLink>
     </div>
 </template>

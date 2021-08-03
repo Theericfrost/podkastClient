@@ -19,11 +19,6 @@
   }
   .menues {
     margin-left: 32px;
-    button {
-      .md-ripple {
-        padding: 0;
-      }
-    }
     div {
       @include font(normal, 500, 16px, 22px, $white);
       text-transform: uppercase;
@@ -33,6 +28,7 @@
     }
   }
   .social-media {
+    margin-right: 24px;
     i {
       font-size: 18px;
       color: $white;
@@ -43,23 +39,28 @@
     }
   }
   .search__block {
-    .md-field {
-      min-height: 32px;
+    i {
+      font-size: 16px;
+      color: $white;
+    }
+    input,
+    label {
+      color: $white;
+    }
+    .v-input {
       padding-top: 0;
-      margin-bottom: 0;
-      &:after {
-        background: $white;
-      }
-      input {
-        -webkit-text-fill-color: $white !important;
-        text-fill-color: $white !important;
-        color: $white;
-        &::placeholder {
-          color: $white;
+      .v-input__control {
+        .v-input__slot:before {
+          border-color: $white;
+          &:hover {
+            border-color: $white;
+          }
         }
       }
+      .v-text-field__details {
+        display: none;
+      }
     }
-    max-width: 167px;
   }
 }
 

@@ -30,18 +30,8 @@
       @include font(normal, 500, 18px, 24px, $black);
     }
     .list {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap-reverse;
-      .md-list {
-        width: 100%;
-        padding: 0;
-        .md-list-item-text {
-            font-weight: 700;
-        }
-        .md-list-item.md-inset .md-list-item-content {
-          padding-left: 24px;
-        }
+      .v-expansion-panel-header {
+        font-weight: 700;
       }
     }
   }

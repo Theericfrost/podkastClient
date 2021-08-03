@@ -1,13 +1,13 @@
 <template>
   <div class="faq">
     <div class="faq__header">
-      <div class="container mx-auto px-4">
+      <v-container>
         <h1>Faq</h1>
         <h2>Здесь собраны самые популярные вопросы и ответы</h2>
-      </div>
+      </v-container>
     </div>
     <div class="questions">
-      <div class="container mx-auto px-4">
+      <v-container>
         <div class="questions__title">Популярные вопросы</div>
         <div class="questions__text">
           Мы получаем от наших слушателей, читателей и зрителей сотни вопросов
@@ -16,16 +16,21 @@
           постараемся его время от времени обновлять, если что-то изменится.
         </div>
         <div class="list">
-          <md-list :md-expand-single="expandSingle">
-            <md-list-item md-expand v-for="question in questions" :key="question.title" >
-              <span class="md-list-item-text">{{question.title}}</span>
-              <md-list slot="md-expand">
-                <md-list-item class="md-inset">{{question.text}}</md-list-item>
-              </md-list>
-            </md-list-item>
-          </md-list>
+          <v-expansion-panels multiple>
+            <v-expansion-panel
+              v-for="question in questions"
+              :key="question.title"
+            >
+              <v-expansion-panel-header>
+                {{ question.title }}
+              </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                {{ question.text }}
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
         </div>
-      </div>
+      </v-container>
     </div>
   </div>
 </template>

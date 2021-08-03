@@ -6,26 +6,43 @@
       </a>
     </div>
     <div class="menues ml-4 flex items-center">
-      <md-menu md-size="medium" md-align-trigger>
-        <md-button md-menu-trigger>О подкасте</md-button>
-        <md-menu-content>
-          <md-menu-item>Реклама в подкасте</md-menu-item>
-           <NuxtLink to="/faq"><md-menu-item>FAQ</md-menu-item></NuxtLink>
-          <md-menu-item>Об авторах</md-menu-item>
-        </md-menu-content>
-      </md-menu>
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <div v-bind="attrs" v-on="on">О подкасте</div>
+        </template>
+        <v-list>
+          <v-list-item>
+            <v-list-item-title>Реклама в подкасте</v-list-item-title>
+          </v-list-item>
+          <v-list-item>
+            <NuxtLink to="/faq">
+              <v-list-item-title>FAQ</v-list-item-title></NuxtLink
+            >
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-title>Об авторах</v-list-item-title>
+          </v-list-item>
+          <v-list-item>
+            <NuxtLink to="/calendar">
+              <v-list-item-title>Выход подкастов</v-list-item-title>
+            </NuxtLink>
+          </v-list-item>
+        </v-list>
+      </v-menu>
       <div>Статьи</div>
       <div>Подкасты</div>
     </div>
-    <div class="social-media ml-auto mr-4 flex items-center">
+    <div class="social-media items-center">
       <i class="fab fa-vk" />
       <i class="fab fa-instagram" />
       <i class="fab fa-youtube" />
     </div>
     <div class="search__block">
-      <md-field>
-        <md-input v-model="search" placeholder="Поиск"></md-input>
-      </md-field>
+      <v-text-field
+        label="Поиск"
+        prepend-icon="fas fa-search"
+        v-model="search"
+      ></v-text-field>
     </div>
   </div>
 </template>
@@ -49,7 +66,10 @@ export default defineComponent({
             this.$refs.header.className = `${classStr} header_motion`;
           }
           if (scrollY <= showShadow && classStr.includes("header_motion")) {
-            this.$refs.header.className = `${classStr.replace("header_motion", "")}`;
+            this.$refs.header.className = `${classStr.replace(
+              "header_motion",
+              ""
+            )}`;
           }
         }
       });

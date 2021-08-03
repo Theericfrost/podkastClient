@@ -2,8 +2,8 @@
 @import "../../assets/scss/mixins";
 @import "./mobile/index.scss";
 
-.main {
-  .main__header {
+.calendar {
+  .calendar__header {
     padding-top: 83px;
     padding-bottom: 120px;
     background: $black2;
@@ -17,6 +17,16 @@
       span {
         color: $blueLogo;
       }
+    }
+  }
+  .schedule {
+    padding: 120px 0;
+    h3 {
+      margin: 0;
+      @include font(normal, 700, 32px, 24px, $black2);
+    }
+    .v-sheet {
+        margin-top: 24px;
     }
   }
 }

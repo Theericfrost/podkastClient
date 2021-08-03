@@ -1,26 +1,28 @@
 <template>
-  <div class="footer mx-auto px-4">
-    <div class="logo__block">
-      <img src="~assets/img/Header/header_logo.png" alt="Frost Cast" />
-      <div class="social__media flex items-center">
-        <a
-          v-for="linkUnit in links"
-          class="link"
-          target="_blank"
-          :href="linkUnit.link"
-          :key="linkUnit.alt"
-        >
-          <img :src="linkUnit.img" :alt="linkUnit.alt" />
-        </a>
+  <div class="footer">
+    <v-container fluid>
+      <div class="logo__block">
+        <img src="~assets/img/Header/header_logo.png" alt="Frost Cast" />
+        <div class="social__media">
+          <a
+            v-for="linkUnit in links"
+            class="link"
+            target="_blank"
+            :href="linkUnit.link"
+            :key="linkUnit.alt"
+          >
+            <img :src="linkUnit.img" :alt="linkUnit.alt" />
+          </a>
+        </div>
       </div>
-    </div>
-    <div class="righs">
-      © TheEricFrost. All rights reserved. 2021
-      <div class="email">
-        Для связи используйте <a :href="email">e-mail</a>. Также ознакомьтесь с
-        разделом <a href="/about-us">"О авторах"</a>
+      <div class="righs">
+        © TheEricFrost. All rights reserved. 2021
+        <div class="email">
+          Для связи используйте <a :href="email">e-mail</a>. Также ознакомьтесь
+          с разделом <a href="/about-us">"О авторах"</a>
+        </div>
       </div>
-    </div>
+    </v-container>
   </div>
 </template>
 
