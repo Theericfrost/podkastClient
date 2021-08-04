@@ -16,8 +16,8 @@
           </v-list-item>
           <v-list-item>
             <NuxtLink to="/faq">
-              <v-list-item-title>FAQ</v-list-item-title></NuxtLink
-            >
+              <v-list-item-title>FAQ</v-list-item-title>
+            </NuxtLink>
           </v-list-item>
           <v-list-item>
             <v-list-item-title>Об авторах</v-list-item-title>

@@ -1,0 +1,48 @@
+@import "../../assets/scss/colors";
+@import "../../assets/scss/mixins";
+@import "./mobile/index.scss";
+
+.PodkastCard {
+  .inner {
+    padding: 16px;
+    .text__block {
+      .title {
+        @include font(normal, 700, 36px, 42px, $black2);
+      }
+      .text {
+        @include font(normal, 500, 24px, 32px, $black2);
+      }
+    }
+    .link {
+      margin-top: 24px;
+      text-align: right;
+    }
+  }
+  &.slider {
+    .inner {
+      position: relative;
+      padding: 0;
+      img {
+        -webkit-filter: brightness(40%);
+      }
+      .text__block {
+        position: absolute;
+        bottom: 24px;
+        left: 24px;
+        .title,
+        .text {
+          color: $white;
+        }
+      }
+      .link {
+        display: none;
+      }
+    }
+  }
+}
+
+@include laptop();
+@include tablet();
+@include mobile768();
+@include mobile640();
+@include mobile480();

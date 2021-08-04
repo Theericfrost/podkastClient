@@ -19,6 +19,24 @@
       }
     }
   }
+  .podkasts {
+    padding: 64px 0;
+    .podkasts__slider {
+      .PodkastCard {
+        width: 70%;
+      }
+    }
+    .podkasts__container {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 49% 49%;
+    }
+    .link__all {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+    }
+  }
 }
 
 @include laptop();
