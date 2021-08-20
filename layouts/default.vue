@@ -4,6 +4,8 @@
     <Nuxt />
     <my-snack-bar />
     <my-footer />
+    <my-audio-player />
+    <my-cookie />
   </v-app>
 </template>
 
@@ -11,13 +13,21 @@
 import Header from "~components/Header/Header";
 import SnackBar from "~components/SnackBar/SnackBar";
 import Footer from "~components/Footer/Footer";
+import AudioPlayer from "~components/AudioPlayer/AudioPlayer";
+import CookieNotification from "~components/CookieNotification/CookieNotification";
 import "~assets/css/font-awesome.css";
+import Cookies from "universal-cookie";
+import { mapMutations } from "vuex";
+
+const cookies = new Cookies();
 
 export default {
   components: {
     "my-header": Header,
     "my-snack-bar": SnackBar,
-    "my-footer": Footer
+    "my-footer": Footer,
+    "my-audio-player": AudioPlayer,
+    "my-cookie": CookieNotification
   },
   head: {
     link: [
@@ -29,6 +39,11 @@ export default {
       },
     ],
   },
+  methods: {
+    ...mapMutations({
+      setShowCookie: "store/setShowCookie",
+    })
+  },
   mounted() {
     /* Font Awesome */
     const fontAwesome = document.createElement("link");
@@ -39,6 +54,10 @@ export default {
       fontAwesome.rel = "stylesheet";
     };
     document.head.appendChild(fontAwesome);
+    const showCookies = cookies.get('ShowCookies');
+    if(showCookies){
+      this.setShowCookie(showCookies === 'false' ? false : true)
+    }
   },
 };
 </script>

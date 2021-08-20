@@ -19,6 +19,65 @@
       }
     }
   }
+  .podkast__block {
+    padding: 64px 0;
+    .card {
+      width: 100%;
+      max-width: 720px;
+      display: flex;
+      position: relative;
+      &:not(:first-of-type) {
+        margin-top: 24px;
+      }
+      .img__block {
+        position: relative;
+        max-width: 240px;
+        &:hover .play__block {
+          display: flex;
+        }
+        .play__block {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          left: 0;
+          top: 0;
+          background: rgba($black2, 0.6);
+          display: none;
+          align-items: center;
+          justify-content: center;
+          .buttons__block {
+            i {
+              cursor: pointer;
+              color: $white;
+              font-size: 48px;
+              transition: 0.3s;
+              &:hover {
+                transform: scale(1.2);
+              }
+            }
+          }
+        }
+      }
+      .text__block {
+        margin-left: 24px;
+        .title {
+        }
+        .text {
+          margin-top: 12px;
+        }
+      }
+      .link {
+        position: absolute;
+        bottom: 12px;
+        right: 12px;
+      }
+    }
+  }
+  .pagination {
+    .v-pagination {
+      justify-content: flex-end;
+    }
+  }
 }
 
 @include laptop();

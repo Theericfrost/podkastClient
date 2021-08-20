@@ -1,9 +1,9 @@
 <template>
   <div class="header flex items-center" ref="header">
     <div class="logo">
-      <a href="/">
+       <NuxtLink to="/">
         <img src="~assets/img/Header/header_logo.png" alt="Frost Cast" />
-      </a>
+      </NuxtLink>
     </div>
     <div class="menues ml-4 flex items-center">
       <v-menu offset-y>
@@ -30,7 +30,9 @@
         </v-list>
       </v-menu>
       <div>Статьи</div>
-      <div>Подкасты</div>
+      <div>
+        <NuxtLink to="/podkasts"> Подкасты </NuxtLink>
+      </div>
     </div>
     <div class="social-media items-center">
       <i class="fab fa-vk" />

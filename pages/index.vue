@@ -11,7 +11,7 @@
     </div>
     <div class="podkasts">
       <v-container class="podkasts__slider">
-        <v-carousel v-model="model" hide-delimiters>
+        <v-carousel hide-delimiters>
           <v-carousel-item
             v-for="podkastUnit in podkasts"
             :key="podkastUnit.title"
