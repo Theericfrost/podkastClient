@@ -2,6 +2,8 @@
   <v-app>
     <my-header />
     <Nuxt />
+    <my-menu />
+    <my-history />
     <my-snack-bar />
     <my-footer />
     <my-audio-player />
@@ -15,6 +17,9 @@ import SnackBar from "~components/SnackBar/SnackBar";
 import Footer from "~components/Footer/Footer";
 import AudioPlayer from "~components/AudioPlayer/AudioPlayer";
 import CookieNotification from "~components/CookieNotification/CookieNotification";
+import Menu from "~components/Menu/Menu";
+import History from "~components/History/History";
+
 import "~assets/css/font-awesome.css";
 import Cookies from "universal-cookie";
 import { mapMutations } from "vuex";
@@ -27,7 +32,9 @@ export default {
     "my-snack-bar": SnackBar,
     "my-footer": Footer,
     "my-audio-player": AudioPlayer,
-    "my-cookie": CookieNotification
+    "my-cookie": CookieNotification,
+    "my-menu": Menu,
+    "my-history": History
   },
   head: {
     link: [
@@ -42,7 +49,8 @@ export default {
   methods: {
     ...mapMutations({
       setShowCookie: "store/setShowCookie",
-    })
+      setQueue: "queue/setQueue"
+    }),
   },
   mounted() {
     /* Font Awesome */
@@ -54,14 +62,17 @@ export default {
       fontAwesome.rel = "stylesheet";
     };
     document.head.appendChild(fontAwesome);
-    const showCookies = cookies.get('ShowCookies');
-    if(showCookies){
-      this.setShowCookie(showCookies === 'false' ? false : true)
+    const showCookies = cookies.get("ShowCookies");
+     const queueCookie = cookies.get('queue');
+    if (showCookies) {
+      this.setShowCookie(showCookies === "false" ? false : true);
+    }
+    if (queueCookie) {
+      this.setQueue(queueCookie);
     }
   },
 };
 </script>
 
-<style>
-
+<style lang="scss">
 </style>

@@ -1,24 +1,68 @@
 <template>
-  <div class="PodkastCard" v-bind:class="{ slider: mode === 'slider' }">
-    <v-card elevation="5" outlined class="inner">
-      <img src="~assets/img/AboutUs/AboutUsBg.jpeg" alt="podkast logo" />
+  <div class="PodkastCard">
+    <v-card class="inner">
+      <div class="img__block">
+        <img :src="podkast.pathImg" :alt="podkast.title" />
+        <div class="play__block">
+          <div class="buttons__block">
+            <i
+              class="fal fa-pause-circle play__block"
+              @click="pauseListener"
+              v-if="pauseIcon"
+            />
+            <i
+              v-else
+              class="fal fa-play-circle play__block"
+              @click="
+                setAudio({
+                  title: podkast.title,
+                  path: podkast.pathAudio,
+                  play: true,
+                })
+              "
+            ></i>
+          </div>
+        </div>
+      </div>
       <div class="text__block">
-        <div class="title">{{ podkast.title }}</div>
+        <div class="name">{{ podkast.title }}</div>
         <div class="text">{{ podkast.text }}</div>
       </div>
       <div class="link">
-        <v-btn elevation="2">Слушать</v-btn>
+        <NuxtLink :to="`/podkast/${podkast['_id']}`">
+          Слушать <i class="fal fa-chevron-right" />
+        </NuxtLink>
       </div>
     </v-card>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
 export default {
   data: () => ({}),
   props: {
     podkast: Object,
-    mode: String,
+  },
+  methods: {
+    ...mapMutations({
+      setAudio: "store/setAudioPath",
+      setAudioPlay: "store/setAudioPlay",
+    }),
+    pauseListener() {
+      this.setAudioPlay(false);
+    },
+  },
+  computed: {
+    ...mapGetters({
+      getAudio: "store/getAudioPath",
+    }),
+    pauseIcon() {
+      return (
+        this.getAudio.play === true &&
+        this.getAudio.title === this.podkast.title
+      );
+    },
   },
 };
 </script>

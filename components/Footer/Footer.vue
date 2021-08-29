@@ -23,6 +23,7 @@
         </div>
       </div>
     </v-container>
+    <my-bug-tracker />
   </div>
 </template>
 
@@ -34,7 +35,11 @@ import {
   social_youTube,
   header_logo,
 } from "~assets/img";
+import BugTracker from "~components/BugTracker/BugTracker";
 export default defineComponent({
+  components: {
+    "my-bug-tracker": BugTracker
+  },
   data() {
     return {
       links: [

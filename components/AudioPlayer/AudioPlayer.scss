@@ -45,14 +45,26 @@
     .name {
       margin-left: 24px;
     }
+    .queue {
+      margin-left: auto;
+      cursor: pointer;
+      i {
+        font-size: 28px;
+      }
+    }
     .play-container {
-        min-width: 16px;
+      min-width: 16px;
       margin-left: 24px;
+    }
+    .next, .prev {
+      margin-left: 24px;
+      font-size: 18px;
+      cursor: pointer;
     }
     .volume-container {
       cursor: pointer;
       z-index: 3;
-      margin-left: auto;
+      margin-left: 12px;
       .volume-button {
         height: 26px;
         display: flex;

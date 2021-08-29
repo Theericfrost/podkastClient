@@ -1,0 +1,50 @@
+@import "../../assets/scss/colors";
+@import "../../assets/scss/mixins";
+@import "./mobile/index.scss";
+
+.menu__item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  .num__play {
+    min-width: 28px;
+    display: flex;
+    justify-content: center;
+    i {
+      font-size: 24px;
+      cursor: pointer;
+      transition: 0.25s;
+      &:hover {
+        transform: scale(1.2)
+      }
+    }
+  }
+  .title__block {
+    margin-left: 16px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    padding: 6px 0;
+    .text {
+      @include font(normal, 500, 16px, 18px, $gray);
+    }
+    .time {
+      margin-left: auto;
+      @include font(normal, 500, 14px, 18px, $gray);
+    }
+    .menu__sub {
+      margin-left: auto;
+      cursor: pointer;
+    }
+  }
+}
+.menu__list {
+  padding: 0;
+}
+
+@include laptop();
+@include tablet();
+@include mobile768();
+@include mobile640();
+@include mobile480();

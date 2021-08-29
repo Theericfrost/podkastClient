@@ -87,9 +87,6 @@ export default {
     page() {
       this.getPodkasts();
     },
-    podkasts(valie){
-      console.log(valie)
-    }
   },
 };
 </script>

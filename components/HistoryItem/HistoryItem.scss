@@ -1,0 +1,60 @@
+@import "../../assets/scss/colors";
+@import "../../assets/scss/mixins";
+@import "./mobile/index.scss";
+
+.history__unit-leave-active {
+  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.history__unit-leave-to {
+  transform: translateX(50%);
+  opacity: 0;
+}
+.play-enter-active {
+  animation: bounce-in 0.3s;
+}
+.play-leave-active {
+  animation: bounce-in 0.3s reverse;
+}
+.audio__unit {
+  display: flex;
+  align-items: center;
+  cursor: move;
+  &:not(:first-of-type) {
+    margin-top: 12px;
+  }
+  .img__block {
+    cursor: pointer;
+    position: relative;
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      filter: brightness(0.3);
+    }
+    .play__icon {
+      position: absolute;
+      top: 13px;
+      left: 13px;
+      font-size: 24px;
+      color: $white;
+      z-index: 3;
+    }
+  }
+  .title__text {
+    margin-left: 16px;
+    @include font(normal, 500, 18px, 24px, $black);
+  }
+  .trash {
+    margin-left: auto;
+    cursor: pointer;
+  }
+  .time {
+    margin-left: 16px;
+  }
+}
+
+@include laptop();
+@include tablet();
+@include mobile768();
+@include mobile640();
+@include mobile480();

@@ -18,23 +18,40 @@
         color: $blueLogo;
       }
     }
+    .typer {
+      .custom.char.typed {
+        color: $white;
+      }
+    }
   }
   .podkasts {
     padding: 64px 0;
     .podkasts__slider {
-      .PodkastCard {
-        width: 70%;
+      .text {
+        .title {
+        }
+        .sub__block {
+          display: flex;
+          justify-content: space-between;
+          .sub__title {
+          }
+          .link__all {
+            display: flex;
+            align-items: center;
+            i {
+              font-size: 12px;
+            }
+          }
+        }
       }
-    }
-    .podkasts__container {
-      display: grid;
-      gap: 20px;
-      grid-template-columns: 49% 49%;
-    }
-    .link__all {
-      margin-top: 24px;
-      display: flex;
-      justify-content: center;
+      .carousel {
+        margin-top: 32px;
+        .inner__slider {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-gap: 24px;
+        }
+      }
     }
   }
 }

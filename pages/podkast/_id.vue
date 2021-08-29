@@ -37,7 +37,6 @@ export default {
     axios.get(`${process.env.BACKEND}/podkasts/${this.id}`).then((response) => {
       if (response && response.data && response.data.data) {
         this.podkast = response.data.data;
-        console.log(response.data.data);
       }
     });
   },

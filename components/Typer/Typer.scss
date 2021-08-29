@@ -1,0 +1,18 @@
+@import "../../assets/scss/colors";
+@import "../../assets/scss/mixins";
+@import "./mobile/index.scss";
+
+.typer {
+  @include font(normal, 500, 32px, 36px, $white);
+  min-height: 2em;
+  &.main__typer {
+    margin-top: 36px;
+    max-width: 800px;
+  }
+}
+
+@include laptop();
+@include tablet();
+@include mobile768();
+@include mobile640();
+@include mobile480();

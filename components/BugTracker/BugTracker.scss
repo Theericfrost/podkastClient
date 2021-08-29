@@ -1,0 +1,39 @@
+@import "../../assets/scss/colors";
+@import "../../assets/scss/mixins";
+@import "./mobile/index.scss";
+
+.BugTracker {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  transform: rotate(45deg);
+  i {
+    color: crimson;
+    font-size: 48px;
+    cursor: pointer;
+    transition: 0.25s;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+.bug__dialog {
+  .v-card__text {
+    padding-bottom: 0 !important;
+    .text {
+      margin-top: 24px;
+      .vue-typer .custom.char.typed {
+        @include font(normal, 600, 18px, 24px, $black);
+      }
+    }
+    .text__area {
+      margin-top: 24px;
+    }
+  }
+}
+
+@include laptop();
+@include tablet();
+@include mobile768();
+@include mobile640();
+@include mobile480();

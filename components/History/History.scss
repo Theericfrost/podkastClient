@@ -1,0 +1,46 @@
+@import "../../assets/scss/colors";
+@import "../../assets/scss/mixins";
+@import "./mobile/index.scss";
+
+.v-dialog.history__dialog {
+  margin-right: auto;
+  margin-bottom: 58px;
+  height: calc(100vh - 58px);
+  max-height: 100%;
+  z-index: 999;
+  .history {
+    height: calc(100vh - 58px);
+    position: relative;
+    .close {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      z-index: 8;
+      i {
+        font-size: 24px;
+        cursor: pointer;
+        transition: 0.25s;
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+    }
+    .inner {
+      margin: 0 auto;
+      max-width: 660px;
+      .content__block {
+        padding: 16px;
+      }
+      .tabs__block {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}
+
+@include laptop();
+@include tablet();
+@include mobile768();
+@include mobile640();
+@include mobile480();

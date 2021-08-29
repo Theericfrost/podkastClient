@@ -1,0 +1,39 @@
+@import "../../assets/scss/colors";
+@import "../../assets/scss/mixins";
+@import "./mobile/index.scss";
+
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .3s;
+}
+.slide-fade-enter, .slide-fade-leave-to{
+  transform: translateX(100%);
+}
+.menu__right {
+  z-index: 10;
+  position: fixed;
+  right: 0;
+  top: 72px;
+  height: 100%;
+  max-width: 30%;
+  width: 100%;
+  .v-card {
+    height: calc(100% - 72px - 58px);
+    border-radius: 0;
+    border: 0;
+  }
+  .v-navigation-drawer {
+    width: 100% !important;
+  }
+  .history__open {
+    cursor: pointer;
+    color: $blueLogo !important;
+  }
+}
+@include laptop();
+@include tablet();
+@include mobile768();
+@include mobile640();
+@include mobile480();

@@ -6,7 +6,7 @@
   padding: 12px;
   position: fixed;
   top: 0;
-  z-index: 999;
+  z-index: 100;
   width: 100%;
   transition: background-color 300ms linear;
   &.header_motion {
@@ -60,6 +60,15 @@
       .v-text-field__details {
         display: none;
       }
+    }
+  }
+  .menu {
+    i {
+      color: $white;
+      margin-left: 24px;
+      font-size: 24px;
+      cursor: pointer;
+      min-width: 24px;
     }
   }
 }

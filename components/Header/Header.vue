@@ -46,18 +46,29 @@
         v-model="search"
       ></v-text-field>
     </div>
+    <div class="menu" @click="setShowMenuRight(!showMenuRight())">
+      <i :class="['fas', showMenuRight() ? 'fa-times' : 'fa-bars']" />
+    </div>
   </div>
 </template>
 
 <script>
 import { defineComponent } from "@vue/composition-api";
+import { mapMutations, mapGetters} from "vuex";
+
 export default defineComponent({
   data() {
     return {
+      ...mapGetters({
+        showMenuRight: "store/getShowMenuRight",
+      }),
       search: "",
     };
   },
   methods: {
+    ...mapMutations({
+      setShowMenuRight: "store/setShowMenuRight"
+    }),
     addListener() {
       window.addEventListener("scroll", () => {
         if (this.$refs.header) {

@@ -1,5 +1,10 @@
 <template>
-  <div class="audio-player" ref="audioPlayer" v-show="link.path" :style="showCookie ? {bottom: '60px'}: {}">
+  <div
+    class="audio-player"
+    ref="audioPlayer"
+    v-show="link.path"
+    :style="showCookie ? { bottom: '60px' } : {}"
+  >
     <div class="timeline" ref="timeLine" @click="timeLineSkip">
       <div class="progress" ref="progress"></div>
     </div>
@@ -9,10 +14,27 @@
         <div class="divider">/</div>
         <div class="length"></div>
       </div>
+      <div class="prev">
+        <i
+          class="fal fa-chevron-double-left"
+          v-if="getQueue.length >= 2"
+          @click="prevHandler"
+        />
+      </div>
       <div class="play-container">
-        <i class="fal fa-play" ref="playBtn" @click="playHandler" />
+        <i :class="['fal', playClass]" ref="playBtn" @click="playHandler" />
+      </div>
+      <div class="next">
+        <i
+          class="fal fa-chevron-double-right"
+          v-if="getQueue.length >= 2"
+          @click="nextHandler"
+        />
       </div>
       <div class="name">{{ link.title }}</div>
+      <div class="queue">
+        <i class="far fa-ellipsis-h" @click="setShowHistory(true)" />
+      </div>
       <div class="volume-container">
         <div class="volume-button" ref="volumeButton">
           <i class="far fa-volume" ref="volume" @click="muteHandler" />
@@ -30,27 +52,34 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 export default {
   data() {
     return {
       audio: null,
+      playClass: "fa-play",
     };
   },
   computed: {
     ...mapGetters({
       link: "store/getAudioPath",
       showCookie: "store/getShowCookie",
+      getAudioPlay: "store/getAudioPlay",
+      getQueue: "queue/getQueue",
     }),
   },
   methods: {
+    ...mapMutations({
+      setAudioPlay: "store/setAudioPlay",
+      setShowHistory: "store/setShowHistory",
+      setAudio: "store/setAudioPath",
+    }),
     getTimeCodeFromNum(num) {
       let seconds = parseInt(num);
       let minutes = parseInt(seconds / 60);
       seconds -= minutes * 60;
       const hours = parseInt(minutes / 60);
       minutes -= hours * 60;
-
       if (hours === 0)
         return `${minutes}:${String(seconds % 60).padStart(2, 0)}`;
       return `${String(hours).padStart(2, 0)}:${minutes}:${String(
@@ -75,17 +104,16 @@ export default {
     playHandler() {
       const playBtn = this.$refs.playBtn;
       if (this.audio.paused) {
+        this.setAudioPlay(true);
         if (playBtn.classList.contains("fa-redo-alt")) {
-          playBtn.classList.remove("fa-redo-alt");
-          playBtn.classList.add("fa-pause");
+          this.playClass = "fa-pause";
         } else {
-          playBtn.classList.remove("fa-play");
-          playBtn.classList.add("fa-pause");
+          this.playClass = "fa-pause";
         }
         this.audio.play();
       } else {
-        playBtn.classList.remove("fa-pause");
-        playBtn.classList.add("fa-play");
+        this.setAudioPlay(false);
+        this.playClass = "fa-play";
         this.audio.pause();
       }
     },
@@ -100,12 +128,59 @@ export default {
         volume.classList.remove("fa-volume-slash");
       }
     },
+    prevHandler() {
+      const index = this.getQueue
+        .map((el) => el.title)
+        .indexOf(this.link.title);
+      if (index === -1) {
+        this.setAudio({
+          title: this.getQueue[0].title,
+          path: this.getQueue[0].pathAudio,
+          play: true,
+        });
+      } else if (index === 0) {
+        this.setAudio({
+          title: this.getQueue[this.getQueue.length - 1].title,
+          path: this.getQueue[this.getQueue.length - 1].pathAudio,
+          play: true,
+        });
+      } else {
+        this.setAudio({
+          title: this.getQueue[index - 1].title,
+          path: this.getQueue[index - 1].pathAudio,
+          play: true,
+        });
+      }
+    },
+    nextHandler() {
+      const index = this.getQueue
+        .map((el) => el.title)
+        .indexOf(this.link.title);
+       if (index === -1) {
+        this.setAudio({
+          title: this.getQueue[0].title,
+          path: this.getQueue[0].pathAudio,
+          play: true,
+        });
+      } else if (index === this.getQueue.length - 1) {
+        this.setAudio({
+          title: this.getQueue[0].title,
+          path: this.getQueue[0].pathAudio,
+          play: true,
+        });
+      } else {
+        this.setAudio({
+          title: this.getQueue[index + 1].title,
+          path: this.getQueue[index + 1].pathAudio,
+          play: true,
+        });
+      }
+    },
   },
   mounted() {
     const progressBar = this.$refs.progress;
     const playeer = this.$refs.audioPlayer;
     const current = this.$refs.current;
-    const playBtn = this.$refs.playBtn;
     this.audio = new Audio(this.link.path);
     this.audio.preload = "auto";
     this.audio.addEventListener(
@@ -118,14 +193,13 @@ export default {
       false
     );
     this.audio.addEventListener("ended", () => {
-      playBtn.classList.add("fa-redo-alt");
-      playBtn.classList.remove("fa-pause");
+      this.playClass = "fa-redo-alt";
     });
     setInterval(() => {
       progressBar.style.width =
         (this.audio.currentTime / this.audio.duration) * 100 + "%";
       current.textContent = this.getTimeCodeFromNum(this.audio.currentTime);
-    }, 500);
+    }, 200);
   },
   watch: {
     link: {
@@ -134,18 +208,24 @@ export default {
           this.audio.src = newValue.path;
         }
         if (newValue.play) {
-          const playBtn = this.$refs.playBtn;
-          if (playBtn.classList.contains("fa-play")) {
-            playBtn.classList.remove("fa-play");
-          }
-          if (playBtn.classList.contains("fa-redo-alt")) {
-            playBtn.classList.remove("fa-redo-alt");
-          }
-          playBtn.classList.add("fa-pause");
           this.audio.play();
+        } else {
+          this.audio.pause();
         }
       },
       deep: true,
+    },
+    getAudioPlay(value, oldValue) {
+      const playBtn = this.$refs.playBtn;
+      if (value === true) {
+        if (playBtn.classList.contains("fa-redo-alt")) {
+          this.playClass = "fa-pause";
+        } else {
+          this.playClass = "fa-pause";
+        }
+      } else {
+        this.playClass = "fa-play";
+      }
     },
   },
 };

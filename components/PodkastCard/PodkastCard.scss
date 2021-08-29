@@ -4,41 +4,70 @@
 
 .PodkastCard {
   .inner {
-    padding: 16px;
+    max-width: 220px;
+    min-height: 270px;
+    max-height: 270px;
+    display: flex;
+    flex-direction: column;
+    .img__block {
+      position: relative;
+      img {
+        transition: 0.25s;
+      }
+      &:hover .play__block {
+        display: flex
+      }
+      &:hover img {
+        filter: brightness(0.6)
+      }
+      .play__block {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        .buttons__block {
+          i {
+            cursor: pointer;
+            color: $white;
+            font-size: 48px;
+            transition: 0.3s;
+            &:hover {
+              transform: scale(1.1);
+            }
+          }
+        }
+      }
+    }
     .text__block {
-      .title {
-        @include font(normal, 700, 36px, 42px, $black2);
+      margin-top: 10px;
+      padding:0 12px;
+      .name {
+        @include font(normal, 600, 16px, 18px, $black2);
       }
       .text {
-        @include font(normal, 500, 24px, 32px, $black2);
+        margin-top: 8px;
+        @include font(normal, 500, 14px, 16px, $black2);
       }
     }
     .link {
-      margin-top: 24px;
-      text-align: right;
-    }
-  }
-  &.slider {
-    .inner {
-      position: relative;
-      padding: 0;
-      img {
-        -webkit-filter: brightness(40%);
-      }
-      .text__block {
-        position: absolute;
-        bottom: 24px;
-        left: 24px;
-        .title,
-        .text {
-          color: $white;
-        }
-      }
-      .link {
-        display: none;
+      @include font(normal, 500, 12px, 14px, $blueLogo);
+      padding: 12px;
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;  
+      cursor: pointer;    
+      i {
+        margin-left: 4px;
+        font-size:  10px;
       }
     }
   }
+ 
 }
 
 @include laptop();
