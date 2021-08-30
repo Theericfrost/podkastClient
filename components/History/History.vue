@@ -18,18 +18,29 @@
           </v-tabs>
           <v-btn elevation="2" small @click="removeAll"> Очистить </v-btn>
         </div>
-        <keep-alive>
-          <div v-if="tab === 0" class="content__block">
+
+        <div v-if="tab === 0" class="content__block">
+          <keep-alive>
             <draggable v-model="queue" @start="drag = true" @end="drag = false">
               <my-history-item
                 v-for="audio in getQueue"
                 :key="audio.title"
                 :audio="audio"
+                   :deleteFunc="removeFromQueue"
               />
             </draggable>
-          </div>
-          <div v-if="tab === 1" class="content__block">hui1</div>
-        </keep-alive>
+          </keep-alive>
+        </div>
+        <div v-if="tab == 1" class="content__block">
+          <draggable v-model="history" @start="drag = true" @end="drag = false">
+            <my-history-item
+              v-for="audio in getHistory"
+              :key="audio.title"
+              :audio="audio"
+              :deleteFunc="removeFromHistory"
+            />
+          </draggable>
+        </div>
       </div>
     </v-sheet>
   </v-bottom-sheet>
@@ -49,7 +60,7 @@ export default {
   },
   data() {
     return {
-      tab: null,
+      tab: 0,
       drag: false,
     };
   },
@@ -58,11 +69,19 @@ export default {
       setShowHistory: "store/setShowHistory",
       setQueue: "queue/setQueue",
       removeAllFromQueue: "queue/removeAllFromQueue",
+      removeFromQueue: "queue/removeFromQueue",
+      setHistory: "history/setHistory",
+      removeAllFromHistory: "history/removeAllFromHistory",
+      removeFromHistory: "history/removeFromHistory",
     }),
     removeAll() {
       if (this.tab === 0) {
         this.removeAllFromQueue();
-        cookies.remove('queue', {path: '/'})
+        cookies.remove("queue", { path: "/" });
+      }
+      if (this.tab === 1) {
+        this.removeAllFromHistory();
+        cookies.remove("history", { path: "/" });
       }
     },
   },
@@ -70,6 +89,7 @@ export default {
     ...mapGetters({
       showHistory: "store/getShowHistory",
       getQueue: "queue/getQueue",
+      getHistory: "history/getHistory",
     }),
     queue: {
       get() {
@@ -78,6 +98,15 @@ export default {
       set(value) {
         this.setQueue(value);
         cookies.set("queue", value, { path: "/" });
+      },
+    },
+    history: {
+      get() {
+        return this.getHistory;
+      },
+      set(value) {
+        this.setHistory(value);
+        cookies.set("history", value, { path: "/" });
       },
     },
   },

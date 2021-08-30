@@ -4,7 +4,6 @@
       <v-container>
         <h1>Привет</h1>
         <h2>Это подкаст <span>Frost Cast</span></h2>
-        <!-- <vue-typer class="typer" text='Я буду рассказывать вам самые интересные события в мире и в it' erase-style='clear'></vue-typer> -->
         <my-typer
           :text="'Я буду рассказывать вам самые интересные события в мире и в it'"
           :eternal="true"

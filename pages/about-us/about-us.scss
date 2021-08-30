@@ -1,0 +1,52 @@
+@import "../../assets/scss/colors";
+@import "../../assets/scss/mixins";
+@import "./mobile/index.scss";
+
+.about__us {
+  background: $black2;
+  padding-bottom: 120px;
+  .img__block {
+    padding-top: 83px;
+    height: 800px;
+    position: relative;
+    .img__bg {
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
+      filter: brightness(0.5);
+      height: 100%;
+    }
+    .text {
+      position: absolute;
+      top: 240px;
+      right: 68px;
+      text-align: right;
+      color: $white;
+      h1 {
+        @include font(normal, 700, 64px, 96px, $white);
+      }
+      h2 {
+        @include font(normal, 600, 48px, 56px, $white);
+        span {
+          color: $blueLogo;
+        }
+      }
+    }
+  }
+  .timeline {
+    margin-top: 32px;
+    &:before {
+      background: $white;
+    }
+    .headline {
+    }
+    .text__sub {
+      color: $white;
+    }
+  }
+}
+
+@include laptop();
+@include tablet();
+@include mobile768();
+@include mobile640();
+@include mobile480();

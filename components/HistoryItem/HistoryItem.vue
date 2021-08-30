@@ -22,7 +22,7 @@
       </div>
       <div class="title__text">{{ audio.title }}</div>
       <div class="trash">
-        <i class="far fa-trash" @click="removeFromQueue(audio)" />
+        <i class="far fa-trash" @click="deleteFunc(audio)" />
       </div>
       <div class="time">{{ fromSecToMin(audio.time) }}</div>
     </div>
@@ -35,6 +35,7 @@ import { utc } from "moment";
 export default {
   props: {
     audio: Object,
+    deleteFunc: Function
   },
   data() {
     return {
@@ -45,7 +46,7 @@ export default {
     ...mapMutations({
       setAudio: "store/setAudioPath",
       setAudioPlay: "store/setAudioPlay",
-      removeFromQueue: "queue/removeFromQueue",
+ 
     }),
     fromSecToMin(val) {
       return utc(val * 1000).format("HH:mm:ss");

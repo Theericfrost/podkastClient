@@ -1,0 +1,17 @@
+@import "../../assets/scss/colors";
+@import "../../assets/scss/mixins";
+@import "./mobile/index.scss";
+
+.articles{
+  padding-top: 83px;
+  padding-bottom: 124px;
+  h1 {
+    @include font(normal, 700, 64px, 72px, $black);
+  }
+}
+
+@include laptop();
+@include tablet();
+@include mobile768();
+@include mobile640();
+@include mobile480();

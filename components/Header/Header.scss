@@ -71,6 +71,39 @@
       min-width: 24px;
     }
   }
+  &.dark {
+    .menues div {
+      color: $black;
+    }
+    .social-media i {
+      color: $black;
+    }
+    .menu i {
+      color: $black;
+    }
+    .search__block i {
+      color: $black;
+    }
+    .search__block {
+      i {
+        color: $black;
+      }
+      input,
+      label {
+        color: $black;
+      }
+      .v-input {
+        .v-input__control {
+          .v-input__slot:before {
+            border-color: $black;
+            &:hover {
+              border-color: $black;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @include laptop();

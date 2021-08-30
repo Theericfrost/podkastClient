@@ -1,5 +1,5 @@
 <template>
-  <div class="header flex items-center" ref="header">
+  <div :class="['header flex items-center', type]" ref="header">
     <div class="logo">
        <NuxtLink to="/">
         <img src="~assets/img/Header/header_logo.png" alt="Frost Cast" />
@@ -20,7 +20,9 @@
             </NuxtLink>
           </v-list-item>
           <v-list-item>
-            <v-list-item-title>Об авторах</v-list-item-title>
+            <NuxtLink to="/about-us">
+              <v-list-item-title>Об авторах</v-list-item-title>
+            </NuxtLink>
           </v-list-item>
           <v-list-item>
             <NuxtLink to="/calendar">
@@ -29,7 +31,9 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <div>Статьи</div>
+      <div>
+         <NuxtLink to="/articles">Статьи</NuxtLink>
+      </div>
       <div>
         <NuxtLink to="/podkasts"> Подкасты </NuxtLink>
       </div>
@@ -54,9 +58,12 @@
 
 <script>
 import { defineComponent } from "@vue/composition-api";
-import { mapMutations, mapGetters} from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 
 export default defineComponent({
+  props: {
+    type: String
+  },
   data() {
     return {
       ...mapGetters({
@@ -67,7 +74,7 @@ export default defineComponent({
   },
   methods: {
     ...mapMutations({
-      setShowMenuRight: "store/setShowMenuRight"
+      setShowMenuRight: "store/setShowMenuRight",
     }),
     addListener() {
       window.addEventListener("scroll", () => {

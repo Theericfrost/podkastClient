@@ -19,49 +19,28 @@
       }
     }
   }
-  .podkast__block {
-    padding: 64px 0;
-    .card {
-      width: 100%;
-      max-width: 720px;
-      display: flex;
-      position: relative;
-      &:not(:first-of-type) {
-        margin-top: 24px;
-      }
-      .img__block {
-        position: relative;
-        max-width: 240px;
-        &:hover .play__block {
+  .podkasts__container {
+    display: flex;
+    .podkasts__block {
+      padding: 64px 0;
+      width: 70%;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 36px;
+    }
+    .advertising {
+      padding: 64px 0;
+      width: 30%;
+      .advertising__block {
+        padding: 16px;
+        width: 100%;
+        position: sticky;
+        top: 88px;
+        cursor: pointer;
+        transition: 0.5s;
+        &:hover {
+          filter: brightness(0.9);
         }
-        .play__block {
-          position: absolute;
-          margin-left: auto;
-          margin-right: auto;
-          left: 0;
-          right: 0;
-          text-align: center;
-          cursor: pointer;
-          color: $white;
-          font-size: 48px;
-          transition: 0.3s;
-          &:hover {
-            transform: scale(1.2);
-          }
-        }
-      }
-      .text__block {
-        margin-left: 24px;
-        .title {
-        }
-        .text {
-          margin-top: 12px;
-        }
-      }
-      .link {
-        position: absolute;
-        bottom: 12px;
-        right: 12px;
       }
     }
   }

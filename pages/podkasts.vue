@@ -3,41 +3,42 @@
     <div class="podkasts__header">
       <v-container>
         <h1>Подкасты</h1>
-        <h2>Это подкаст <span>Frost Cast</span></h2>
-        <!-- <Typer text="Я буду рассказывать вам самые интересные события в мире и в
-        it" eternal={true} speed={150} colorObj={[ { "самые интересные события":
-        "crimson" }, { it: "#28BCE5" }, ]} class="main__typer" lines={2} /> -->
+        <my-typer
+          :text="'Cамые интересные события в мире и в it'"
+          :eternal="true"
+          :speed="150"
+          :colorObj="[
+            { 'Cамые интересные события': 'crimson' },
+            { it: '#28BCE5' },
+          ]"
+          :className="'main__typer'"
+          :lines="2"
+        />
       </v-container>
     </div>
-    <div class="podkast__block">
-      <v-container>
-        <v-card
-          elevation="2"
+    <v-container class="podkasts__container">
+      <div class="podkasts__block">
+        <my-podkast
           v-for="podkast in podkasts"
           :key="podkast['_id']"
-          class="card"
-        >
-          <div class="img__block">
-            <img :src="podkast.pathImg" :alt="podkast.title" />
-            <div class="play__block">
-              <div class="buttons__block">
-                <i class="far fa-play-circle" @click="setAudio({title: podkast.title, path: podkast.pathAudio, play: true})"></i>
-              </div>
-            </div>
-          </div>
-          <div class="text__block">
-            <div class="title">{{ podkast.title }}</div>
-            <div class="text">{{ podkast.text }}</div>
-          </div>
-          <div class="link">
-            <NuxtLink :to="`/podkast/${podkast['_id']}`"> Подробнее </NuxtLink>
-          </div>
-        </v-card>
-      </v-container>
-    </div>
-    <div class="pagination" >
+          :podkast="podkast"
+        />
+      </div>
+      <div class="advertising">
+        <NuxtLink to="/about-us">
+          <v-card elevation="2" outlined class="advertising__block">
+            <div class="title">Узнать больше об авторе</div>
+          </v-card>
+        </NuxtLink>
+      </div>
+    </v-container>
+    <div class="pagination">
       <v-container>
-        <v-pagination v-model="page" :length="paginationAmout" v-if="total > limit"></v-pagination>
+        <v-pagination
+          v-model="page"
+          :length="paginationAmout"
+          v-if="total > limit"
+        ></v-pagination>
       </v-container>
     </div>
   </div>
@@ -46,8 +47,14 @@
 <script>
 import axios from "axios";
 import { mapMutations } from "vuex";
+import PodkastCard from "~/components/PodkastCard/PodkastCard";
+import Typer from "~components/Typer/Typer";
 
 export default {
+  components: {
+    "my-podkast": PodkastCard,
+    "my-typer": Typer,
+  },
   data() {
     return {
       podkasts: [],

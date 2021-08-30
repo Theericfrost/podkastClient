@@ -3,12 +3,21 @@
     <div class="faq__header">
       <v-container>
         <h1>Faq</h1>
-        <h2>Здесь собраны самые популярные вопросы и ответы</h2>
+        <my-typer
+          :text="'Здесь собраны самые популярные вопросы и ответы'"
+          :eternal="true"
+          :speed="150"
+          :colorObj="[
+            { 'вопросы': '#28BCE5' },
+            { 'ответы': 'crimson' },
+          ]"
+          :className="'main__typer'"
+          :lines="2"
+        />
       </v-container>
     </div>
     <div class="questions">
       <v-container>
-        <div class="questions__title">Популярные вопросы</div>
         <div class="questions__text">
           Мы получаем от наших слушателей, читателей и зрителей сотни вопросов
           каждый год. Причем часто они повторяются. Поэтому мы решили ответить
@@ -36,7 +45,11 @@
 </template>
 
 <script>
+import Typer from "~components/Typer/Typer";
 export default {
+  components: {
+    'my-typer': Typer
+  },
   data() {
     return {
       questions: [

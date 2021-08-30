@@ -1,12 +1,12 @@
 <template>
   <v-app>
-    <my-header />
+    <my-header :type="headerType" />
     <Nuxt />
-    <my-menu />
+    <my-menu :podkasts="podkasts"/>
     <my-history />
     <my-snack-bar />
     <my-footer />
-    <my-audio-player />
+    <my-audio-player :podkasts="podkasts" />
     <my-cookie />
   </v-app>
 </template>
@@ -23,6 +23,7 @@ import History from "~components/History/History";
 import "~assets/css/font-awesome.css";
 import Cookies from "universal-cookie";
 import { mapMutations } from "vuex";
+import { get } from "axios";
 
 const cookies = new Cookies();
 
@@ -34,7 +35,7 @@ export default {
     "my-audio-player": AudioPlayer,
     "my-cookie": CookieNotification,
     "my-menu": Menu,
-    "my-history": History
+    "my-history": History,
   },
   head: {
     link: [
@@ -46,11 +47,33 @@ export default {
       },
     ],
   },
+  data() {
+    return {
+      whiteThemeHeader: ["/articles"],
+      podkasts: null,
+    };
+  },
   methods: {
     ...mapMutations({
       setShowCookie: "store/setShowCookie",
-      setQueue: "queue/setQueue"
+      setQueue: "queue/setQueue",
+      setHistory: "history/setHistory",
     }),
+    getPodkasts() {
+      get(`${process.env.BACKEND}/podkasts`).then((response) => {
+        if (response && response.data && response.data.data) {
+          this.podkasts = response.data.data;
+        }
+      });
+    },
+  },
+  computed: {
+    headerType() {
+      return this.whiteThemeHeader.includes(this.$route.path) ? "dark" : "";
+    },
+  },
+  created() {
+    this.getPodkasts();
   },
   mounted() {
     /* Font Awesome */
@@ -63,12 +86,16 @@ export default {
     };
     document.head.appendChild(fontAwesome);
     const showCookies = cookies.get("ShowCookies");
-     const queueCookie = cookies.get('queue');
+    const queueCookie = cookies.get("queue");
+    const historyCookie = cookies.get("history");
     if (showCookies) {
       this.setShowCookie(showCookies === "false" ? false : true);
     }
     if (queueCookie) {
       this.setQueue(queueCookie);
+    }
+    if (historyCookie) {
+      this.setHistory(historyCookie);
     }
   },
 };

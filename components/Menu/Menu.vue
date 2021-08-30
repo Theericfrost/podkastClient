@@ -28,36 +28,28 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
-import { get } from "axios";
 import MenuItem from "~components/MenuItem/MenuItem";
 
 export default {
   components: {
     "my-menu-item": MenuItem,
   },
+  props: {
+    podkasts: Array
+  },
   data() {
     return {
       ...mapGetters({
         showMenuRight: "store/getShowMenuRight",
-      }),
-      podkasts: null,
+      })
     };
   },
   methods: {
     ...mapMutations({
       setShowHistory: "store/setShowHistory",
     }),
-    getPodkasts() {
-      get(`${process.env.BACKEND}/podkasts`).then((response) => {
-        if (response && response.data && response.data.data) {
-          this.podkasts = response.data.data;
-        }
-      });
-    },
   },
-  created() {
-    this.getPodkasts();
-  },
+
 };
 </script>
 

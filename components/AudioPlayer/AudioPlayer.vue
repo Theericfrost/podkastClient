@@ -53,7 +53,13 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
 export default {
+  props: {
+    podkasts: Array,
+  },
   data() {
     return {
       audio: null,
@@ -66,13 +72,21 @@ export default {
       showCookie: "store/getShowCookie",
       getAudioPlay: "store/getAudioPlay",
       getQueue: "queue/getQueue",
+      getHistory: "history/getHistory",
     }),
+    alreadyInHistory() {
+      const value = this.getHistory.find(
+        (el) => el.title === this.link.title
+      );
+      return value ? true : false;
+    },
   },
   methods: {
     ...mapMutations({
       setAudioPlay: "store/setAudioPlay",
       setShowHistory: "store/setShowHistory",
       setAudio: "store/setAudioPath",
+      addToHistory: "history/addToHistory",
     }),
     getTimeCodeFromNum(num) {
       let seconds = parseInt(num);
@@ -156,7 +170,7 @@ export default {
       const index = this.getQueue
         .map((el) => el.title)
         .indexOf(this.link.title);
-       if (index === -1) {
+      if (index === -1) {
         this.setAudio({
           title: this.getQueue[0].title,
           path: this.getQueue[0].pathAudio,
@@ -192,9 +206,28 @@ export default {
       },
       false
     );
+    // Listener when audio end
     this.audio.addEventListener("ended", () => {
-      this.playClass = "fa-redo-alt";
+      if (!this.alreadyInHistory) {
+        const audioToAdd = this.podkasts.find(
+          (el) => el.title === this.link.title
+        );
+        this.addToHistory(audioToAdd);
+        const historyCookie = cookies.get("history");
+        if (historyCookie) {
+          cookies.set("history", [...historyCookie, { ...audioToAdd }], {
+            path: "/",
+          });
+        } else {
+          cookies.set("history", [{ ...audioToAdd }], { path: "/" });
+        }
+      }
+      if (this.getQueue.length >= 2) {
+        this.nextHandler();
+      }
+      
     });
+    // Update time
     setInterval(() => {
       progressBar.style.width =
         (this.audio.currentTime / this.audio.duration) * 100 + "%";
@@ -215,7 +248,8 @@ export default {
       },
       deep: true,
     },
-    getAudioPlay(value, oldValue) {
+    getAudioPlay(value) {
+      // update icon of play button
       const playBtn = this.$refs.playBtn;
       if (value === true) {
         if (playBtn.classList.contains("fa-redo-alt")) {
