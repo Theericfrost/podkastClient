@@ -3,7 +3,14 @@
     <div class="calendar__header">
       <v-container>
         <h1>Календарь</h1>
-        <h2>График выхода подкастов и знаменательные даты</h2>
+        <my-typer
+          :text="'График выхода подкастов и знаменательные даты'"
+          :eternal="true"
+          :speed="150"
+          :colorObj="[{ 'подкастов': 'crimson' }, { 'знаменательные': '#28BCE5' }]"
+          :className="'main__typer'"
+          :lines="2"
+        />
       </v-container>
     </div>
     <div class="schedule">
@@ -26,9 +33,13 @@
 
 <script>
 import axios from "axios";
-import {unix} from "moment";
+import { unix } from "moment";
+import Typer from "~components/Typer/Typer";
 
 export default {
+  components: {
+    "my-typer": Typer
+  },
   data() {
     return {
       type: "month",
@@ -38,39 +49,39 @@ export default {
     };
   },
   methods: {
-    getColorByType(type){
-      switch(type){
-        case 'podkast': return 'red';
-        default: return 'green';
+    getColorByType(type) {
+      switch (type) {
+        case "podkast":
+          return "red";
+        default:
+          return "green";
       }
     }
   },
   created() {
-    axios
-      .get(`${process.env.BACKEND}/calendar`)
-      .then((response) => {
-        if(response && response.data && response.data.data) {
-          this.events = response.data.data
-        }
-      });
+    axios.get(`${process.env.BACKEND}/calendar`).then(response => {
+      if (response && response.data && response.data.data) {
+        this.events = response.data.data;
+      }
+    });
   },
   computed: {
     eventsComputed() {
       return this.events.map(date => {
-        const {end, start, name, type} = date;
+        const { end, start, name, type } = date;
         return {
           end: unix(end).format("YYYY-MM-DD"),
           start: unix(start).format("YYYY-MM-DD"),
           name,
           color: this.getColorByType(type),
           timed: false
-        }
-      })
+        };
+      });
     }
   }
 };
 </script>
 
 <style lang="scss">
-@import "./calendar/calendar.scss";
+@import "./calendar.scss";
 </style>

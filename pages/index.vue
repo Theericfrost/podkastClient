@@ -44,8 +44,8 @@
         </v-carousel>
       </v-container>
     </div>
-    <my-thank-you />
     <my-subscribe />
+    <my-thank-you />
   </div>
 </template>
 

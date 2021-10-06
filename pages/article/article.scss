@@ -1,0 +1,35 @@
+@import "../../assets/scss/colors";
+@import "../../assets/scss/mixins";
+@import "./mobile/index.scss";
+
+.article {
+  .article__header {
+    padding-top: 86px;
+    padding-bottom: 64px;
+    background: $black2;
+    h1 {
+      @include font(normal, 700, 64px, 78px, $white);
+    }
+    .typer {
+      color: $black2;
+    }
+  }
+  .article__block {
+    .time {
+
+    }
+    .text {
+      margin-top: 12px;
+      .shift {
+        margin-left: 12px;
+      }
+    }
+  }
+  
+}
+
+@include laptop();
+@include tablet();
+@include mobile768();
+@include mobile640();
+@include mobile480();

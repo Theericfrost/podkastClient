@@ -99,5 +99,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./podkasts/podkasts.scss";
+@import "./podkasts.scss";
 </style>

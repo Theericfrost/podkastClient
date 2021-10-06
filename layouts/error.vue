@@ -65,7 +65,7 @@ export default {
   padding-bottom: 120px;
   background: $black2;
   h1 {
-    margin-top: 120px;
+  
     @include font(normal, 700, 86px, 96px, $white);
   }
   .code {

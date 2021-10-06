@@ -1,5 +1,5 @@
 <template>
-  <div class="thankYou mx-auto px-4 pb-16">
+  <div class="thankYou mx-auto px-4 pt-28">
     <transition name="bounce" v-on:leave="leave">
       <div v-if="show === 'smartphone'" class="smartphone">
         <div class="content">Спасибо что слушаете</div>

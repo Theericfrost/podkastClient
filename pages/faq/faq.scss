@@ -4,11 +4,11 @@
 
 .faq {
   .faq__header {
-    padding-top: 83px;
-    padding-bottom: 120px;
+    padding-top: 86px;
+    padding-bottom: 64px;
     background: $black2;
     h1 {
-      margin-top: 120px;
+    
       @include font(normal, 700, 86px, 96px, $white);
     }
     h2 {

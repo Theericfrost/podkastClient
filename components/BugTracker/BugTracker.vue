@@ -26,7 +26,7 @@
             ></v-textarea>
           </v-card-text>
           <v-card-actions class="justify-end">
-            <v-btn text @click="sendMessage">Отправить</v-btn>
+            <v-btn text @click="sendMessage(dialog)">Отправить</v-btn>
             <v-btn text @click="dialog.value = false">Закрыть</v-btn>
           </v-card-actions>
         </v-card>
@@ -36,19 +36,41 @@
 </template>
 
 <script>
+import { post } from "axios";
+import { mapMutations } from "vuex";
+
 export default {
   props: {},
   data() {
     return {
       open: false,
-      message: "",
+      message: ""
     };
   },
   methods: {
-    sendMessage() {
-      console.log(this.message);
-    },
-  },
+    ...mapMutations({
+      setSnack: "store/setSnack"
+    }),
+    sendMessage(dialog) {
+      if (this.message.length > 256) {
+        this.setSnack({ text: "Максимальное количество символов 256" });
+      } else {
+        post(`${process.env.BACKEND}/errors`, { error: this.message }).then(
+          response => {
+            if (response && response.status === 200) {
+              this.setSnack({ text: "Ваше сообщение успешно отправлено" });
+              dialog.value = false;
+            } else {
+              this.setSnack({ text: "Что то пошло не так" });
+            }
+          },
+          error => {
+            this.setSnack({ text: "Что то пошло не так" });
+          }
+        );
+      }
+    }
+  }
 };
 </script>
 

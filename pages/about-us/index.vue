@@ -85,5 +85,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./about-us/about-us.scss";
+@import "./about-us.scss";
 </style>

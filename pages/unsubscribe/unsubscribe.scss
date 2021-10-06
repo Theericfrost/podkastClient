@@ -1,9 +1,0 @@
-@import "../../assets/scss/colors";
-@import "../../assets/scss/mixins";
-@import "./mobile/index.scss";
-
-@include laptop();
-@include tablet();
-@include mobile768();
-@include mobile640();
-@include mobile480();

@@ -11,7 +11,7 @@
             :href="linkUnit.link"
             :key="linkUnit.alt"
           >
-            <img :src="linkUnit.img" :alt="linkUnit.alt" />
+            <i :class="linkUnit.class" />
           </a>
         </div>
       </div>
@@ -29,13 +29,8 @@
 
 <script>
 import { defineComponent } from "@vue/composition-api";
-import {
-  social_instagram,
-  social_vk,
-  social_youTube,
-  header_logo,
-} from "~assets/img";
 import BugTracker from "~components/BugTracker/BugTracker";
+
 export default defineComponent({
   components: {
     "my-bug-tracker": BugTracker
@@ -43,9 +38,9 @@ export default defineComponent({
   data() {
     return {
       links: [
-        { img: social_vk, alt: "vk", link: "" },
-        { img: social_instagram, alt: "instagram", link: "" },
-        { img: social_youTube, alt: "youTube", link: "" },
+        { class: "fab fa-vk", alt: "vk", link: "" },
+        { class: "fab fa-instagram", alt: "instagram", link: "" },
+        { class: "fab fa-youtube", alt: "youTube", link: "" },
       ],
       email: `mailto:${process.env.EMAIL}`,
     };

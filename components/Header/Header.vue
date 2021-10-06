@@ -1,19 +1,11 @@
 <template>
   <div :class="['header flex items-center', type]" ref="header">
-    <div class="logo">
-       <NuxtLink to="/">
-        <img src="~assets/img/Header/header_logo.png" alt="Frost Cast" />
-      </NuxtLink>
-    </div>
     <div class="menues ml-4 flex items-center">
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
           <div v-bind="attrs" v-on="on">О подкасте</div>
         </template>
-        <v-list>
-          <v-list-item>
-            <v-list-item-title>Реклама в подкасте</v-list-item-title>
-          </v-list-item>
+        <v-list class="about__podkast">
           <v-list-item>
             <NuxtLink to="/faq">
               <v-list-item-title>FAQ</v-list-item-title>
@@ -32,26 +24,26 @@
         </v-list>
       </v-menu>
       <div>
-         <NuxtLink to="/articles">Статьи</NuxtLink>
+        <NuxtLink to="/articles">Статьи</NuxtLink>
       </div>
       <div>
         <NuxtLink to="/podkasts"> Подкасты </NuxtLink>
       </div>
     </div>
-    <div class="social-media items-center">
-      <i class="fab fa-vk" />
-      <i class="fab fa-instagram" />
-      <i class="fab fa-youtube" />
+    <div class="logo">
+      <NuxtLink to="/">
+        <img src="~assets/img/Header/header_logo.png" alt="Frost Cast" />
+      </NuxtLink>
     </div>
-    <div class="search__block">
-      <v-text-field
-        label="Поиск"
-        prepend-icon="fas fa-search"
-        v-model="search"
-      ></v-text-field>
-    </div>
-    <div class="menu" @click="setShowMenuRight(!showMenuRight())">
-      <i :class="['fas', showMenuRight() ? 'fa-times' : 'fa-bars']" />
+    <div class="right__part">
+      <div class="social-media items-center">
+        <i class="fab fa-vk" />
+        <i class="fab fa-instagram" />
+        <i class="fab fa-youtube" />
+      </div>
+      <div class="menu" @click="setShowMenuRight(!showMenuRight())">
+        <i :class="['fas', showMenuRight() ? 'fa-times' : 'fa-bars']" />
+      </div>
     </div>
   </div>
 </template>
@@ -67,14 +59,14 @@ export default defineComponent({
   data() {
     return {
       ...mapGetters({
-        showMenuRight: "store/getShowMenuRight",
+        showMenuRight: "store/getShowMenuRight"
       }),
-      search: "",
+      search: ""
     };
   },
   methods: {
     ...mapMutations({
-      setShowMenuRight: "store/setShowMenuRight",
+      setShowMenuRight: "store/setShowMenuRight"
     }),
     addListener() {
       window.addEventListener("scroll", () => {
@@ -93,11 +85,11 @@ export default defineComponent({
           }
         }
       });
-    },
+    }
   },
   mounted() {
     this.addListener();
-  },
+  }
 });
 </script>
 

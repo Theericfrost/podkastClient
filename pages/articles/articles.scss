@@ -2,11 +2,63 @@
 @import "../../assets/scss/mixins";
 @import "./mobile/index.scss";
 
-.articles{
-  padding-top: 83px;
-  padding-bottom: 124px;
-  h1 {
-    @include font(normal, 700, 64px, 72px, $black);
+.articles {
+  .articles__header {
+    padding-top: 86px;
+    padding-bottom: 64px;
+    h1 {
+      @include font(normal, 700, 86px, 96px, $black2);
+    }
+    .typer {
+      color: $black2;
+    }
+  }
+  .articles__block {
+    .tab__block {
+      &:not(:first-of-type) {
+        margin-top: 16px;
+      }
+      .article__title {
+        @include font(normal, 700, 24px, 26px, $black2);
+      }
+    }
+    .links__container {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 12px;
+      .link__block {
+        padding: 16px;
+        border-radius: 16px;
+        background: $white;
+        margin-top: 4px;
+        display: flex;
+        flex-direction: column;
+        &:hover {
+          h3 {
+            color: $crimson;
+          }
+        }
+        h3 {
+          @include font(normal, 700, 18px, 24px, $black2);
+          transition: color 0.3s;
+        }
+        .text {
+          margin-top: 8px;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          color: $black2;
+          line-height: 1.3em;
+          height: 1.3em;
+        }
+        .time {
+          margin-top: 4px;
+          color: $black2;
+        }
+      }
+    }
   }
 }
 

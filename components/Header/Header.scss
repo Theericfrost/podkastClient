@@ -9,13 +9,10 @@
   z-index: 100;
   width: 100%;
   transition: background-color 300ms linear;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   &.header_motion {
     background: rgba($black2, 0.7);
-  }
-  .logo {
-    img {
-      height: 48px;
-    }
   }
   .menues {
     margin-left: 32px;
@@ -26,82 +23,69 @@
         margin-left: 24px;
       }
     }
-  }
-  .social-media {
-    margin-right: 24px;
-    i {
-      font-size: 18px;
+    a {
       color: $white;
-      cursor: pointer;
-      &:not(:first-of-type) {
-        margin-left: 12px;
-      }
     }
   }
-  .search__block {
-    i {
-      font-size: 16px;
-      color: $white;
+  .logo {
+    display: flex;
+    justify-content: center;
+    img {
+      height: 48px;
     }
-    input,
-    label {
-      color: $white;
-    }
-    .v-input {
-      padding-top: 0;
-      .v-input__control {
-        .v-input__slot:before {
-          border-color: $white;
-          &:hover {
-            border-color: $white;
-          }
+  }
+  .right__part {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    .social-media {
+      margin-right: 24px;
+      i {
+        font-size: 18px;
+        color: $white;
+        cursor: pointer;
+        &:not(:first-of-type) {
+          margin-left: 12px;
         }
       }
-      .v-text-field__details {
-        display: none;
+    }
+    .menu {
+      i {
+        color: $white;
+        margin-left: 24px;
+        font-size: 24px;
+        cursor: pointer;
+        min-width: 24px;
       }
     }
   }
-  .menu {
-    i {
-      color: $white;
-      margin-left: 24px;
-      font-size: 24px;
-      cursor: pointer;
-      min-width: 24px;
-    }
-  }
+
   &.dark {
-    .menues div {
-      color: $black;
+    .menues {
+      div {
+        color: $blueLogo;
+      }
+      a {
+        color: $blueLogo;
+      }
     }
     .social-media i {
-      color: $black;
+      color: $black2;
     }
     .menu i {
-      color: $black;
+      color: $black2;
     }
-    .search__block i {
-      color: $black;
+  }
+}
+
+.v-list.about__podkast {
+  padding: 0;
+  .v-list-item {
+    &:hover {
+      background: rgba($black2, 0.3);
     }
-    .search__block {
-      i {
-        color: $black;
-      }
-      input,
-      label {
-        color: $black;
-      }
-      .v-input {
-        .v-input__control {
-          .v-input__slot:before {
-            border-color: $black;
-            &:hover {
-              border-color: $black;
-            }
-          }
-        }
-      }
+    a {
+      color: $black2;
     }
   }
 }
